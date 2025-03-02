@@ -1,0 +1,88 @@
+{%load static %} {% block body %} {% include 'navigation.html' %}
+<h4
+  style="
+    font-family: 'cursive';
+    font-size: 20px;
+    color: black;
+    background-color: #dcd6f7;
+    font-weight: bold;
+    margin-top: 0%;
+    height: 40px;
+    text-align: center;
+    padding-top: 1%;
+  "
+>
+  Change Company Logo
+</h4>
+
+<div
+  style="
+    border: 1px solid gray;
+    margin-left: 200px;
+    margin-right: 200px;
+    padding-left: 20px;
+    padding-right: 20px;
+  "
+>
+  <form class="container mt-5" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <label>Job Title</label>
+        <input
+          type="text"
+          class="form-control"
+          readonly
+          name="jobtitle"
+          value="{{job.title}}"
+        />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <img src="{{job.image.url}}" style="width: 100px; height: 100px" />
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <label>Company Logo</label>
+        <input type="file" class="form-control" name="logo" required />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <center>
+          <input
+            type="submit"
+            value="Submit"
+            class="btn btn-primary"
+            style="width: 80px"
+          />
+        </center>
+      </div>
+    </div>
+  </form>
+</div>
+{% include 'footer.html' %} {% if error == "no" %}
+<script>
+  alert("Compny logo has been updated");
+  window.location.href = "{% url 'change_companylogo' pid=job.id %}";
+</script>
+{% endif %} {% if error == "yes" %}
+<script>
+  alert("Something went wrong, Try again..!");
+</script>
+{% endif %}
+
+<!--{% if error == "no" %}
+<script>
+  alert("Job Detail has been updated");
+  window.location.href = "edit_jobdetail job.id";
+</script>
+{% endif %} {% if error == "yes" %}
+<script>
+  alert("Invalid Login Credential, Try again..!");
+</script>
+{% endif %} {% endblock %}--->

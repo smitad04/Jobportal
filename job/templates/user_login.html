@@ -1,0 +1,84 @@
+{%load static %} {% block body %} {% include 'navigation.html' %}
+
+<h4
+  style="
+    font-family: 'cursive';
+    font-size: 20px;
+    color: black;
+    background-color: #dcd6f7;
+    font-weight: bold;
+    margin-top: 0%;
+    height: 40px;
+    text-align: center;
+    padding-top: 1%;
+  "
+>
+  User Login
+</h4>
+<hr />
+
+<div
+  style="
+    border: 1px solid gray;
+    margin-left: 200px;
+    margin-right: 200px;
+    padding-left: 20px;
+    padding-right: 20px;
+  "
+>
+  <form class="container mt-5" method="post">
+    {% csrf_token %}
+    <label><b>Email id</b></label>
+    <input
+      type="text"
+      class="form-control"
+      name="uname"
+      placeholder="Enter UserName"
+    />
+
+    <label><b>Password</b></label>
+    <input
+      type="Password"
+      class="form-control"
+      name="pwd"
+      placeholder="Enter Email id"
+    />
+    <input
+      type="submit"
+      class="btn btn-primary"
+      value="Login"
+      style="
+        margin-top: 2%;
+        color: white;
+        background-color: darkcyan;
+        height: 40px;
+      "
+    />
+    <a
+      href="{% url 'user_signup'%}"
+      class="btn btn-primary"
+      style="
+        margin-top: 2%;
+        color: white;
+        background-color: darkcyan;
+        height: 40px;
+      "
+      >SignUp</a
+    >
+    <br>
+    <br>
+    
+  </form>
+
+</div>
+  {% include 'footer.html' %} {% if error == "no" %}
+  <script>
+    alert("Login Successful");
+    window.location.href = "user_home";
+  </script>
+  {% endif %} {% if error == "yes" %}
+  <script>
+    alert("Invalid Login Credential, Try again..!");
+  </script>
+  {% endif %} {% endblock %}
+</div>

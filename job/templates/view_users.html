@@ -1,0 +1,52 @@
+{% load static %} {% block body%} {% include 'admin_navigation.html' %}
+
+
+<h4
+  style="
+    font-family: 'cursive';
+    font-size: 20px;
+    color: black;
+    background-color: #dcd6f7;
+    font-weight: bold;
+    margin-top: 0%;
+    height: 40px;
+    text-align: center;
+    padding-top: 1%;
+  "
+>
+  View All Student Users
+</h4>
+<hr />
+<div class="container">
+  <table class="table table-hover" id="example">
+    <thead>
+      <tr style="background-color: lightblue">
+        <th>Sr.No.</th>
+        <th>Full Name</th>
+        <th>Email Id</th>
+        <th>Contact No</th>
+        <th>Geder</th>
+        <th>Image</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in data %}
+      <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{i.user.first_name}} {{i.user.last_name}}</td>
+        <td>{{i.user.username}}</td>
+        <td>{{i.mobile}}</td>
+        <td>{{i.gender}}</td>
+        <td>
+          <img src="{{i.image.url}}" style="width: 100px" height="100px" />
+        </td>
+        <td><a href="{% url 'delete_user' i.user.id %}" class="btn btn-danger btn-sm" onclick="return confirm('Are u sure?')"><i class="fa fa-trash" aria-hidden="true"></i>
+        </a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  </div>
+  {%endblock %}
+</div>
